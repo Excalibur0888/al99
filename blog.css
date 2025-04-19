@@ -20,6 +20,8 @@
     text-transform: uppercase;
     position: relative;
     padding-bottom: 15px;
+    font-family: var(--heading-font);
+    letter-spacing: 1.2px;
 }
 
 .section-title:after {
@@ -87,6 +89,7 @@
     font-weight: bold;
     color: #FFD700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    font-family: var(--numbers-font);
 }
 
 .winner-content {
@@ -126,11 +129,13 @@
     font-weight: bold;
     color: #fff;
     font-size: 18px;
+    font-family: var(--subheading-font);
 }
 
 .winner-location {
     color: #aaa;
     font-size: 14px;
+    font-family: var(--body-font);
 }
 
 .winner-quote {
@@ -156,6 +161,7 @@
     color: #ddd;
     font-style: italic;
     line-height: 1.5;
+    font-family: var(--body-font);
 }
 
 .winner-date {
@@ -244,6 +250,8 @@
     color: #fff;
     line-height: 1.4;
     transition: color 0.3s ease;
+    font-family: var(--heading-font);
+    letter-spacing: 0.5px;
 }
 
 .blog-card:hover .blog-title {
@@ -329,6 +337,7 @@
     font-weight: 500;
     color: #fff;
     font-size: 16px;
+    font-family: var(--body-font);
 }
 
 /* Улучшение блока tournament-results */
@@ -393,6 +402,7 @@ i.bronze {
     font-weight: 500;
     font-size: 16px;
     color: #fff;
+    font-family: var(--body-font);
 }
 
 .result-prize {
@@ -402,6 +412,7 @@ i.bronze {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
     padding-left: 15px;
     border-left: 1px dashed rgba(255, 215, 0, 0.3);
+    font-family: var(--numbers-font);
 }
 
 /* Стили для "Share Your Al99 Win!" */
@@ -475,11 +486,14 @@ i.bronze {
     color: #fff;
     margin-bottom: 5px;
     font-size: 18px;
+    font-family: var(--subheading-font);
+    font-weight: 600;
 }
 
 .benefit-text p {
     color: #bbb;
     font-size: 14px;
+    font-family: var(--body-font);
 }
 
 .share-win-cta {
@@ -552,6 +566,7 @@ i.bronze {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     max-width: 180px;
     line-height: 1.3;
+    font-family: var(--heading-font);
 }
 
 /* Стили для блога */
@@ -696,10 +711,6 @@ i.bronze {
 }
 
 @media (max-width: 480px) {
-    .section-title {
-        font-size: 20px;
-    }
-    
     .winner-card, .blog-card {
         margin-bottom: 20px;
     }
