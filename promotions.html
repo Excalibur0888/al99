@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al99 Casino Promotions - Bonuses & Free Spins</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .promo-card {
+            background: linear-gradient(135deg, #222, #333, #222);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #444;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .promo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(140, 49, 255, 0.2);
+            border-color: var(--purple);
+        }
+        
+        .promo-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .promo-title::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--purple), transparent);
+            border-radius: 2px;
+        }
+        
+        .promo-subtitle {
+            font-size: 20px;
+            margin-bottom: 25px;
+            color: #ddd;
+            font-weight: 500;
+        }
+        
+        .promo-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .promo-detail {
+            background: linear-gradient(145deg, rgba(140, 49, 255, 0.05), rgba(140, 49, 255, 0.15));
+            border: 1px solid var(--purple);
+            border-radius: 10px;
+            padding: 18px;
+            width: calc(33.33% - 14px);
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .promo-detail:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(145deg, rgba(140, 49, 255, 0.1), rgba(140, 49, 255, 0.2));
+            box-shadow: 0 8px 15px rgba(140, 49, 255, 0.1);
+        }
+        
+        .detail-label {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .detail-value {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--white);
+        }
+        
+        .promo-description {
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #ddd;
+            font-size: 16px;
+        }
+        
+        .promo-tag {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            color: white;
+            font-weight: bold;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3);
+            z-index: 10;
+        }
+        
+        .terms-list {
+            list-style: disc;
+            padding-left: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .terms-list li {
+            margin-bottom: 12px;
+            position: relative;
+            color: #bbb;
+        }
+        
+        .promo-steps {
+            margin-top: 30px;
+            counter-reset: steps;
+            position: relative;
+        }
+        
+        .promo-step {
+            display: flex;
+            margin-bottom: 20px;
+            counter-increment: steps;
+            position: relative;
+            padding-left: 55px;
+        }
+        
+        .promo-step::before {
+            content: counter(steps);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--purple), #9c4dff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(140, 49, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .promo-step:hover::before {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 20px rgba(140, 49, 255, 0.4);
+        }
+        
+        .promo-step p {
+            margin: 0;
+            font-size: 17px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Mobile Responsiveness Fixes */
+        @media (max-width: 768px) {
+            .promo-card {
+                padding: 25px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .promo-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .promo-detail {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .promo-title {
+                font-size: 24px;
+            }
+            
+            .promo-subtitle {
+                font-size: 18px;
+            }
+            
+            .promo-tag {
+                font-size: 12px;
+                padding: 6px 30px;
+                right: -30px;
+                top: 15px;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-right: 0;
+            }
+            
+            /* Improve mobile layout */
+            body {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100vw;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+            
+            .ticker {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
+            .page-content {
+                padding: 0 10px;
+            }
+            
+            .hero-section {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 25px 15px;
+								margin-top: 10px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .section-subtitle {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .promo-step {
+                padding-left: 45px;
+            }
+            
+            .promo-step::before {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Animation for the promo cards */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .promo-card {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+        
+        .promo-card:nth-child(1) { animation-delay: 0.1s; }
+        .promo-card:nth-child(2) { animation-delay: 0.2s; }
+        .promo-card:nth-child(3) { animation-delay: 0.3s; }
+        .promo-card:nth-child(4) { animation-delay: 0.4s; }
+        .promo-card:nth-child(5) { animation-delay: 0.5s; }
+        .promo-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <a href="index.html"><img src="images/logo.webp" alt="Al99 Casino" class="logo"></a>
+				<div class="auth-buttons">
+					<a href="https://negolous.com/QS3yvq7m" class="login-button">LOGIN</a>
+					<a href="https://negolous.com/QS3yvq7m" class="register-button">REGISTER</a>
+			</div>
+        <div class="nav-items">
+            <a href="index.html" class="nav-item">
+                <i class="fa fa-home nav-icon"></i>
+                Home
+            </a>
+            <a href="games.html" class="nav-item">
+                <i class="fa fa-gamepad nav-icon"></i>
+                Games
+            </a>
+            <a href="blog.html" class="nav-item">
+                <i class="fa fa-newspaper nav-icon"></i>
+                Blog
+            </a>
+            <a href="forum.html" class="nav-item">
+                <i class="fa fa-comments nav-icon"></i>
+                Forum
+            </a>
+            <a href="payment.html" class="nav-item">
+                <i class="fa fa-wallet nav-icon"></i>
+                Payment
+            </a>
+            <a href="promotions.html" class="nav-item active">
+                <i class="fa fa-gift nav-icon"></i>
+                Promos
+            </a>
+        </div>
+        <a href="https://negolous.com/QS3yvq7m" class="agent-button">AGENT</a>
+        <a href="https://negolous.com/QS3yvq7m" class="download-button">DOWNLOAD</a>
+    </div>
+		    <!-- Floating Social Media Icons -->
+				<div class="floating-icons">
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fab fa-telegram"></i>
+					</a>
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fab fa-whatsapp"></i>
+					</a>
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fa fa-headset"></i>
+					</a>
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fa fa-gift"></i>
+					</a>
+			</div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Ticker with exchange rates and winners -->
+        <div class="ticker">
+            <div class="ticker-content">
+                <span>🏆 Rahim from Dhaka won ৳2,200,000 on Al99's Gold Megaways! | 💰 Tania from Chittagong hit 14,000x on Crazy Time! | 📈 Exchange Rate: 1 USD = ৳110.25 | 🏆 Farhan from Sylhet won ৳500,000 on Lightning Roulette!</span>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1 class="section-title">Al99 Casino Bonuses</h1>
+                <h2 class="section-subtitle">250% Welcome Bonus + Daily Free Spins for Players!</h2>
+                <p>Claim exclusive bonuses, free spins, and tournament prizes at Al99 Casino. Our promotions are designed to maximize your winnings and gaming experience.</p>
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">CLAIM NO-DEPOSIT FREE SPINS</a>
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-green">JOIN VIP CLUB</a>
+            </div>
+
+            <!-- New Players Welcome Bonus -->
+            <div class="promo-card">
+                <div class="promo-tag">HOT</div>
+                <h2 class="promo-title">250% Welcome Bonus + 100 Free Spins</h2>
+                <h3 class="promo-subtitle">New players only - Use code: AL99250</h3>
+                
+                <div class="promo-details">
+                    <div class="promo-detail">
+                        <div class="detail-label">Min. Deposit</div>
+                        <div class="detail-value">৳50</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Max. Bonus</div>
+                        <div class="detail-value">৳50,000</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Wagering</div>
+                        <div class="detail-value">30x</div>
+                    </div>
+                </div>
+                
+                <div class="promo-description">
+                    <p>Get an incredible 250% boost on your first deposit at Al99 Casino! Deposit ৳1,000 and play with ৳3,500 plus receive 100 Free Spins on our exclusive Al99's Gold Megaways slot.</p>
+                    
+                    <div class="promo-steps">
+                        <div class="promo-step">
+                            <p>Create your Al99 Casino account - only takes 10 seconds!</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>Make your first deposit of ৳50 or more</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>Enter bonus code <strong>AL99250</strong> in the bonus code field</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>Receive your 250% bonus instantly + 100 Free Spins (delivered as 20 per day for 5 days)</p>
+                        </div>
+                    </div>
+                    
+                    <p>Terms and conditions:</p>
+                    <ul class="terms-list">
+                        <li>New players only, 18+</li>
+                        <li>First deposit only, minimum deposit ৳50</li>
+                        <li>30x wagering requirement (bonus + deposit)</li>
+                        <li>Free Spins valid for 24 hours after being credited</li>
+                    </ul>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">CLAIM 250% BONUS NOW</a>
+            </div>
+
+            <!-- Friday Reload Bonus -->
+            <div class="promo-card">
+                <h2 class="promo-title">Friday Reload Bonus</h2>
+                <h3 class="promo-subtitle">50% extra up to ৳20,000 every Friday!</h3>
+                
+                <div class="promo-details">
+                    <div class="promo-detail">
+                        <div class="detail-label">Min. Deposit</div>
+                        <div class="detail-value">৳100</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Max. Bonus</div>
+                        <div class="detail-value">৳20,000</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Wagering</div>
+                        <div class="detail-value">25x</div>
+                    </div>
+                </div>
+                
+                <div class="promo-description">
+                    <p>Start your weekend right with our Friday Reload Bonus! Every Friday, deposit and get a 50% bonus up to ৳20,000. Perfect for boosting your bankroll for weekend gaming sessions.</p>
+                    
+                    <div class="promo-steps">
+                        <div class="promo-step">
+                            <p>Log in to your Al99 Casino account on any Friday</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>Make a deposit of ৳100 or more</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>Your 50% bonus will be added automatically</p>
+                        </div>
+                    </div>
+                    
+                    <p>Terms and conditions:</p>
+                    <ul class="terms-list">
+                        <li>Available every Friday from 00:01 to 23:59</li>
+                        <li>25x wagering requirement on bonus amount</li>
+                        <li>Valid for all casino games except table games</li>
+                    </ul>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">CLAIM FRIDAY BONUS</a>
+            </div>
+
+            <!-- VIP Program -->
+            <div class="promo-card">
+                <h2 class="promo-title">VIP Cashback Program</h2>
+                <h3 class="promo-subtitle">Up to 30% weekly cashback on losses</h3>
+                
+                <div class="promo-details">
+                    <div class="promo-detail">
+                        <div class="detail-label">Min. Deposit</div>
+                        <div class="detail-value">৳500</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Max. Cashback</div>
+                        <div class="detail-value">৳500,000</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Wagering</div>
+                        <div class="detail-value">1x</div>
+                    </div>
+                </div>
+                
+                <div class="promo-description">
+                    <p>Join our exclusive VIP program and enjoy premium benefits including weekly cashback on losses, personal account manager, exclusive bonuses, and priority withdrawals. The more you play, the higher your VIP level and the better your rewards!</p>
+                    
+                    <p>VIP Levels and Cashback Rates:</p>
+                    <ul class="terms-list">
+                        <li><strong>Bronze:</strong> 5% cashback, ৳100,000 monthly withdrawal limit</li>
+                        <li><strong>Silver:</strong> 10% cashback, ৳250,000 monthly withdrawal limit</li>
+                        <li><strong>Gold:</strong> 15% cashback, ৳500,000 monthly withdrawal limit</li>
+                        <li><strong>Platinum:</strong> 20% cashback, ৳1,000,000 monthly withdrawal limit</li>
+                        <li><strong>Diamond:</strong> 30% cashback, unlimited monthly withdrawals</li>
+                    </ul>
+                    
+                    <p>Terms and conditions:</p>
+                    <ul class="terms-list">
+                        <li>Cashback calculated on net losses from Monday to Sunday</li>
+                        <li>Paid automatically every Monday</li>
+                        <li>Only 1x wagering requirement on cashback amount</li>
+                        <li>VIP level determined by monthly betting volume</li>
+                    </ul>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-green">JOIN VIP PROGRAM</a>
+            </div>
+
+            <!-- Daily Free Spins -->
+            <div class="promo-card">
+                <div class="promo-tag">DAILY</div>
+                <h2 class="promo-title">Daily Free Spins Challenge</h2>
+                <h3 class="promo-subtitle">Win up to 100 Free Spins every day!</h3>
+                
+                <div class="promo-details">
+                    <div class="promo-detail">
+                        <div class="detail-label">Min. Deposit</div>
+                        <div class="detail-value">৳100</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Free Spins</div>
+                        <div class="detail-value">Up to 100</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Wagering</div>
+                        <div class="detail-value">20x</div>
+                    </div>
+                </div>
+                
+                <div class="promo-description">
+                    <p>Complete simple daily challenges to earn Free Spins on our most popular slots. Each day brings a new challenge and new chances to win!</p>
+                    
+                    <p>Example daily challenges:</p>
+                    <ul class="terms-list">
+                        <li>Deposit ৳100 = 20 Free Spins</li>
+                        <li>Win 5 rounds on any slot = 10 Free Spins</li>
+                        <li>Place 50 bets = 15 Free Spins</li>
+                        <li>Hit a win of 50x your bet = 25 Free Spins</li>
+                        <li>Play any game for 30 minutes = 30 Free Spins</li>
+                    </ul>
+                    
+                    <p>Complete all daily challenges to earn the maximum 100 Free Spins!</p>
+                    
+                    <p>Terms and conditions:</p>
+                    <ul class="terms-list">
+                        <li>Challenges reset daily at 00:01</li>
+                        <li>Free Spins valid for 24 hours after being credited</li>
+                        <li>20x wagering requirement on Free Spins winnings</li>
+                    </ul>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">CLAIM TODAY'S CHALLENGE</a>
+            </div>
+
+            <!-- Tournaments -->
+            <div class="promo-card">
+                <h2 class="promo-title">Weekly Casino Tournaments</h2>
+                <h3 class="promo-subtitle">Compete for prize pools of up to ৳1,000,000!</h3>
+                
+                <div class="promo-details">
+                    <div class="promo-detail">
+                        <div class="detail-label">Buy-in</div>
+                        <div class="detail-value">Free</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Prize Pool</div>
+                        <div class="detail-value">৳1,000,000</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Winners</div>
+                        <div class="detail-value">Top 50</div>
+                    </div>
+                </div>
+                
+                <div class="promo-description">
+                    <p>Join our weekly tournaments and compete against other players for massive prize pools! We run different tournaments throughout the week:</p>
+                    
+                    <ul class="terms-list">
+                        <li><strong>Monday-Tuesday:</strong> Slot Battles - play eligible slots and earn points based on win multipliers</li>
+                        <li><strong>Wednesday-Thursday:</strong> Live Casino Race - play live dealer games and climb the leaderboard</li>
+                        <li><strong>Friday-Sunday:</strong> Roulette King Tournament - place bets on roulette tables to earn points</li>
+                    </ul>
+                    
+                    <p>Prizes are distributed to the top 50 players, with the winner taking home up to ৳200,000 in bonus money!</p>
+                    
+                    <p>Terms and conditions:</p>
+                    <ul class="terms-list">
+                        <li>Free to join with any deposit during the tournament period</li>
+                        <li>Points calculated based on win multiplier, not bet size</li>
+                        <li>Tournament prizes have 10x wagering requirement</li>
+                        <li>Leaderboard updated in real-time</li>
+                    </ul>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-green">JOIN CURRENT TOURNAMENT</a>
+            </div>
+
+            <!-- Refer a Friend -->
+            <div class="promo-card">
+                <h2 class="promo-title">Refer a Friend</h2>
+                <h3 class="promo-subtitle">Get ৳1,000 for each friend who joins!</h3>
+                
+                <div class="promo-details">
+                    <div class="promo-detail">
+                        <div class="detail-label">Reward</div>
+                        <div class="detail-value">৳1,000</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Friend's Deposit</div>
+                        <div class="detail-value">Min. ৳500</div>
+                    </div>
+                    
+                    <div class="promo-detail">
+                        <div class="detail-label">Wagering</div>
+                        <div class="detail-value">5x</div>
+                    </div>
+                </div>
+                
+                <div class="promo-description">
+                    <p>Invite your friends to join Al99 Casino and earn ৳1,000 for each successful referral! Plus, your friend will get an exclusive 300% welcome bonus instead of the standard 250%.</p>
+                    
+                    <div class="promo-steps">
+                        <div class="promo-step">
+                            <p>Log in to your account and get your unique referral link</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>Share the link with your friends via social media, email, or messaging apps</p>
+                        </div>
+                        
+                        <div class="promo-step">
+                            <p>When your friend registers and deposits at least ৳500, you'll receive ৳1,000 bonus</p>
+                        </div>
+                    </div>
+                    
+                    <p>There's no limit to how many friends you can refer - invite 10 friends and get ৳10,000 in bonuses!</p>
+                    
+                    <p>Terms and conditions:</p>
+                    <ul class="terms-list">
+                        <li>Referred friend must make a deposit of at least ৳500</li>
+                        <li>5x wagering requirement on referral bonus</li>
+                        <li>Cannot refer members of the same household</li>
+                    </ul>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">GET REFERRAL LINK</a>
+            </div>
+        </div>
+        
+        <!-- Footer Section -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Al99</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://negolous.com/QS3yvq7m">About Us</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Responsible Gaming</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Terms & Conditions</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Privacy Policy</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Games</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://negolous.com/QS3yvq7m">Slots</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Live Casino</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Table Games</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Crash Games</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Sports Betting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://negolous.com/QS3yvq7m">Help Center</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Contact Us</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Live Chat</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Complaints</a></li>
+                        <li><a href="https://negolous.com/QS3yvq7m">Security</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Payment Methods</h3>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-bitcoin"></i>
+                        <i class="fab fa-ethereum"></i>
+                        <i class="fab fa-google-pay"></i>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://negolous.com/QS3yvq7m"><i class="fab fa-facebook"></i></a>
+                        <a href="https://negolous.com/QS3yvq7m"><i class="fab fa-twitter"></i></a>
+                        <a href="https://negolous.com/QS3yvq7m"><i class="fab fa-instagram"></i></a>
+                        <a href="https://negolous.com/QS3yvq7m"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Al99 Casino. All rights reserved. 18+ | Play Responsibly.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Duplicate ticker content for continuous scrolling
+        document.addEventListener('DOMContentLoaded', function() {
+            const tickerContent = document.querySelector('.ticker-content');
+            tickerContent.innerHTML = tickerContent.innerHTML + ' ' + tickerContent.innerHTML;
+            
+            // Fix mobile overflow issues
+            document.querySelector('body').style.overflowX = 'hidden';
+            document.querySelector('.main-content').style.overflowX = 'hidden';
+            document.querySelector('.main-content').style.width = '100%';
+            document.querySelector('.main-content').style.maxWidth = '100vw';
+            
+            if (window.innerWidth <= 768) {
+                document.querySelector('.sidebar').style.position = 'relative';
+                document.querySelector('.sidebar').style.height = 'auto';
+                document.querySelector('.sidebar').style.width = '100%';
+                document.querySelector('.main-content').style.marginLeft = '0';
+            }
+            
+            // Apply animation to promo cards with staggered delay
+            const promoCards = document.querySelectorAll('.promo-card');
+            promoCards.forEach((card, index) => {
+                card.style.animationDelay = `${0.1 * (index + 1)}s`;
+            });
+        });
+    </script>
+</body>
+</html> 

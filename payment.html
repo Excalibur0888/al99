@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al99 Casino Payments - Fast Deposits & Withdrawals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .payment-card {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .payment-method {
+            background: linear-gradient(to bottom right, #2a2a2a, #333);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+        }
+        
+        .payment-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--purple);
+        }
+        
+        .payment-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .payment-info {
+            margin-bottom: 20px;
+        }
+        
+        .payment-info p {
+            margin-bottom: 8px;
+        }
+        
+        .deposit-limits, .withdrawal-limits {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #444;
+        }
+        
+        .limits-label {
+            color: #aaa;
+        }
+        
+        .steps-container {
+            margin-top: 40px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(140, 49, 255, 0.3);
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--purple-light);
+            font-size: 18px;
+        }
+        
+        /* FAQ Styles */
+        .faq-item {
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .faq-item h3 {
+            cursor: pointer;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+        
+        .faq-item h3 i {
+            color: var(--purple);
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .faq-answer {
+            margin-left: 30px;
+        }
+        
+        .faq-answer p {
+            line-height: 1.6;
+            color: #ddd;
+        }
+        
+        .faq-answer strong {
+            color: var(--purple-light);
+        }
+        
+        /* Testimonial Box */
+        .testimonial-box {
+            background: linear-gradient(145deg, #2a2a2a, #222);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--purple);
+        }
+        
+        .testimonial-content {
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .testimonial-content i {
+            color: var(--purple);
+            font-size: 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+        }
+        
+        .testimonial-content p {
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #eee;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--purple-light);
+            text-align: right;
+        }
+        
+        /* Stats Boxes */
+        .stat-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-box {
+            background: linear-gradient(145deg, #2a2a2a, #222);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--purple-light);
+            margin-bottom: 10px;
+        }
+        
+        .stat-number span {
+            font-size: 20px;
+            margin-left: 2px;
+        }
+        
+        .stat-label {
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(145deg, #1E1E38, #2C2C54);
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .cta-section p {
+            color: #eee;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 18px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .cta-buttons .btn {
+            padding: 15px 30px;
+            font-size: 16px;
+        }
+        
+        /* Mobile Responsiveness Fixes */
+        @media (max-width: 768px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-method {
+                padding: 15px;
+                width: 100%;
+            }
+            
+            .payment-icon {
+                font-size: 30px;
+            }
+            
+            .payment-name {
+                font-size: 18px;
+            }
+            
+            .hero-section {
+                padding: 25px 15px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .section-subtitle {
+                font-size: 18px;
+            }
+            
+            .deposit-limits, .withdrawal-limits {
+                font-size: 14px;
+            }
+            
+            .step {
+                flex-direction: column;
+                padding-left: 0;
+                margin-bottom: 30px;
+            }
+            
+            .step-number {
+                margin: 0 auto 15px;
+            }
+            
+            .step-content {
+                text-align: center;
+            }
+            
+            .payment-card {
+                padding: 20px 15px;
+            }
+            
+            .cta-section {
+                padding: 30px 15px;
+            }
+            
+            .stat-boxes {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .main-content {
+                width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .page-content {
+
+                padding: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stat-boxes {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-box {
+                padding: 15px;
+            }
+            
+            .testimonial-content p {
+                font-size: 14px;
+            }
+            
+            .testimonial-author {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <a href="index.html"><img src="images/logo.webp" alt="Al99 Casino" class="logo"></a>
+				<div class="auth-buttons">
+					<a href="https://negolous.com/QS3yvq7m" class="login-button">LOGIN</a>
+					<a href="https://negolous.com/QS3yvq7m" class="register-button">REGISTER</a>
+			</div>
+        <div class="nav-items">
+            <a href="index.html" class="nav-item">
+                <i class="fa fa-home nav-icon"></i>
+                Home
+            </a>
+            <a href="games.html" class="nav-item">
+                <i class="fa fa-gamepad nav-icon"></i>
+                Games
+            </a>
+            <a href="blog.html" class="nav-item">
+                <i class="fa fa-newspaper nav-icon"></i>
+                Blog
+            </a>
+            <a href="forum.html" class="nav-item">
+                <i class="fa fa-comments nav-icon"></i>
+                Forum
+            </a>
+            <a href="payment.html" class="nav-item active">
+                <i class="fa fa-wallet nav-icon"></i>
+                Payment
+            </a>
+            <a href="promotions.html" class="nav-item">
+                <i class="fa fa-gift nav-icon"></i>
+                Promos
+            </a>
+        </div>
+        <a href="https://negolous.com/QS3yvq7m" class="agent-button">AGENT</a>
+        <a href="https://negolous.com/QS3yvq7m" class="download-button">DOWNLOAD</a>
+    </div>
+		    <!-- Floating Social Media Icons -->
+				<div class="floating-icons">
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fab fa-telegram"></i>
+					</a>
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fab fa-whatsapp"></i>
+					</a>
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fa fa-headset"></i>
+					</a>
+					<a href="https://negolous.com/QS3yvq7m" class="floating-icon">
+							<i class="fa fa-gift"></i>
+					</a>
+			</div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Ticker with exchange rates and winners -->
+        <div class="ticker">
+            <div class="ticker-content">
+                <span>🏆 Rahim from Dhaka won ৳2,200,000 on Al99's Gold Megaways! | 💰 Tania from Chittagong hit 14,000x on Crazy Time! | 📈 Exchange Rate: 1 USD = ৳110.25 | 🏆 Farhan from Sylhet won ৳500,000 on Lightning Roulette!</span>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1 class="section-title">Al99 Casino Payments</h1>
+                <h2 class="section-subtitle">No Fees, No Waiting – Withdraw ৳50,000+ via bKash or Nagad in 90 Seconds!</h2>
+                <p>Deposit or withdraw instantly with the most trusted payment methods. Use bKash, Nagad, Rocket, USDT, or Visa/Mastercard. Your money is always safe and your winnings arrive lightning-fast.</p>
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">DEPOSIT NOW – 250% BONUS</a>
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-green">WITHDRAW VIA BKASH</a>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-card">
+                <h2 class="payment-title">Available Payment Methods</h2>
+                <p>💡 Pro Tip: Use Nagad for withdrawals up to ৳500,000 – done in under 2 minutes!</p>
+                
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fa fa-mobile-alt payment-icon"></i>
+                        <div class="payment-name">bKash</div>
+                        <div class="payment-info">
+                            <p>The most popular mobile payment in Bangladesh - send and receive money in seconds!</p>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Min. Deposit:</span>
+                                <span>৳50</span>
+                            </div>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Max. Deposit:</span>
+                                <span>৳500,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Min. Withdrawal:</span>
+                                <span>৳100</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Max. Withdrawal:</span>
+                                <span>৳500,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Processing Time:</span>
+                                <span>90 seconds</span>
+                            </div>
+                        </div>
+                        <a href="https://negolous.com/QS3yvq7m" class="btn">Deposit Now</a>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fa fa-money-bill-wave payment-icon"></i>
+                        <div class="payment-name">Nagad</div>
+                        <div class="payment-info">
+                            <p>Fast-growing digital financial service with excellent rates and instant transfers!</p>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Min. Deposit:</span>
+                                <span>৳50</span>
+                            </div>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Max. Deposit:</span>
+                                <span>৳500,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Min. Withdrawal:</span>
+                                <span>৳100</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Max. Withdrawal:</span>
+                                <span>৳500,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Processing Time:</span>
+                                <span>90 seconds</span>
+                            </div>
+                        </div>
+                        <a href="https://negolous.com/QS3yvq7m" class="btn">Deposit Now</a>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fa fa-rocket payment-icon"></i>
+                        <div class="payment-name">Rocket</div>
+                        <div class="payment-info">
+                            <p>Dutch-Bangla Bank's mobile banking service - secure and widely accepted!</p>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Min. Deposit:</span>
+                                <span>৳100</span>
+                            </div>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Max. Deposit:</span>
+                                <span>৳300,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Min. Withdrawal:</span>
+                                <span>৳100</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Max. Withdrawal:</span>
+                                <span>৳300,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Processing Time:</span>
+                                <span>2-5 minutes</span>
+                            </div>
+                        </div>
+                        <a href="https://negolous.com/QS3yvq7m" class="btn">Deposit Now</a>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fa fa-coins payment-icon"></i>
+                        <div class="payment-name">USDT (TRC20)</div>
+                        <div class="payment-info">
+                            <p>Cryptocurrency stablecoin pegged to the US dollar - perfect for international users!</p>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Min. Deposit:</span>
+                                <span>10 USDT</span>
+                            </div>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Max. Deposit:</span>
+                                <span>Unlimited</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Min. Withdrawal:</span>
+                                <span>20 USDT</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Max. Withdrawal:</span>
+                                <span>Unlimited</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Processing Time:</span>
+                                <span>1-10 minutes</span>
+                            </div>
+                        </div>
+                        <a href="https://negolous.com/QS3yvq7m" class="btn">Deposit Now</a>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fa fa-credit-card payment-icon"></i>
+                        <div class="payment-name">Visa/Mastercard</div>
+                        <div class="payment-info">
+                            <p>Convenient card payments - supported by all major banks in Bangladesh!</p>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Min. Deposit:</span>
+                                <span>৳200</span>
+                            </div>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Max. Deposit:</span>
+                                <span>৳1,000,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Min. Withdrawal:</span>
+                                <span>N/A</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Max. Withdrawal:</span>
+                                <span>N/A</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Processing Time:</span>
+                                <span>Instant deposit only</span>
+                            </div>
+                        </div>
+                        <a href="https://negolous.com/QS3yvq7m" class="btn">Deposit Now</a>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <i class="fa fa-university payment-icon"></i>
+                        <div class="payment-name">Bank Transfer</div>
+                        <div class="payment-info">
+                            <p>Direct bank transfers for larger deposits and withdrawals!</p>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Min. Deposit:</span>
+                                <span>৳5,000</span>
+                            </div>
+                            <div class="deposit-limits">
+                                <span class="limits-label">Max. Deposit:</span>
+                                <span>Unlimited</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Min. Withdrawal:</span>
+                                <span>৳10,000</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Max. Withdrawal:</span>
+                                <span>Unlimited</span>
+                            </div>
+                            <div class="withdrawal-limits">
+                                <span class="limits-label">Processing Time:</span>
+                                <span>1-24 hours</span>
+                            </div>
+                        </div>
+                        <a href="https://negolous.com/QS3yvq7m" class="btn">Deposit Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How to Deposit -->
+            <div class="payment-card">
+                <h2 class="payment-title">💳 How to Deposit at Al99 Casino</h2>
+                <p>Making your first deposit at Al99 is incredibly fast and secure - follow these simple steps to start playing in under 60 seconds:</p>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Log in to your Al99 account</div>
+                            <p>Sign in to your existing account or create a new one in just 10 seconds <strong>with no KYC verification required</strong> for standard play!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Access the Cashier section</div>
+                            <p>Click the prominent <strong>"Deposit"</strong> button in the top right corner of any page or navigate to the Cashier from your account dashboard.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Choose your preferred payment method</div>
+                            <p>Select from <strong>bKash, Nagad, Rocket, USDT, credit/debit cards, or bank transfer</strong> - all methods are instant with no processing fees!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Enter your deposit amount and bonus code</div>
+                            <p>Deposit as little as <strong>৳50</strong> and enter bonus code <strong>AL99250</strong> for your 250% welcome bonus + 100 free spins!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Confirm and start playing immediately</div>
+                            <p>After confirming your payment, funds appear in your Al99 account <strong>instantly</strong> - no waiting period required!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">MAKE YOUR FIRST DEPOSIT</a>
+            </div>
+
+            <!-- How to Withdraw -->
+            <div class="payment-card">
+                <h2 class="payment-title">⚡ Al99's 90-Second Withdrawal Process</h2>
+                <p>Experience the <strong>fastest withdrawals in the online casino industry</strong>. Our record? Just 37 seconds from request to money in account!</p>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Access your account and withdrawal page</div>
+                            <p>Log in and click the <strong>"Withdraw"</strong> button from your account dashboard or navigate to the Cashier section to start the process.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Select your preferred withdrawal method</div>
+                            <p>Choose from <strong>bKash, Nagad, Rocket, USDT, or bank transfer</strong> - all mobile payment methods are processed in under 90 seconds!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Enter your withdrawal amount</div>
+                            <p>Specify your payout amount from <strong>৳100 up to ৳500,000</strong> for mobile payments with <strong>zero withdrawal fees</strong> at any level.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">Confirm your payment information</div>
+                            <p>Enter or verify your bKash/Nagad number or payment details, ensuring everything is accurate for instant processing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">Receive your money in seconds</div>
+                            <p>Click "Confirm" and watch your funds appear in your payment account in <strong>as little as 90 seconds</strong> - the fastest in Bangladesh!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-box">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"I couldn't believe how fast my winnings arrived! I withdrew ৳120,000 after hitting a big win on Gates of Olympus and the money was in my bKash account in just 83 seconds. No other casino even comes close!"</p>
+                        <div class="testimonial-author">- Rahim M., Dhaka</div>
+                    </div>
+                </div>
+                
+                <a href="https://negolous.com/QS3yvq7m" class="btn btn-green">WITHDRAW YOUR WINNINGS</a>
+            </div>
+
+            <!-- FAQs -->
+            <div class="payment-card">
+                <h2 class="payment-title">💰 Payment FAQs</h2>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-circle-question"></i> Are there any fees for deposits or withdrawals?</h3>
+                    <div class="faq-answer">
+                        <p><strong>Absolutely ZERO fees!</strong> Al99 Casino does not charge any fees for deposits or withdrawals. What you deposit is what you get in your casino account, and what you withdraw is exactly what you'll receive in your payment account. We believe in complete transparency with your money.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-bolt"></i> Why is Al99's withdrawal process so fast?</h3>
+                    <div class="faq-answer">
+                        <p>Our <strong>lightning-fast 90-second withdrawals</strong> are powered by cutting-edge payment technology and significant cash reserves that ensure instant payouts. Our fully automated system processes withdrawals immediately upon request, eliminating manual approval for most transactions—unlike other casinos that make you wait hours or even days.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-unlock"></i> Is there a wagering requirement before I can withdraw?</h3>
+                    <div class="faq-answer">
+                        <p>For regular deposits without bonuses, there is <strong>no wagering requirement at all</strong>—your money remains yours to withdraw anytime. For bonus funds, you'll need to complete the specified wagering requirements before withdrawal (typically 25-35x depending on the promotion, which is lower than industry standards).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-shield-alt"></i> Is it safe to use my bKash/Nagad account at Al99?</h3>
+                    <div class="faq-answer">
+                        <p><strong>100% secure!</strong> We implement bank-level 256-bit encryption to protect all financial transactions. Your payment information is never stored on our servers, ensuring maximum security for your financial data. We also use advanced fraud protection systems to monitor all transactions.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-clock"></i> What should I do if my withdrawal is taking longer than expected?</h3>
+                    <div class="faq-answer">
+                        <p>While <strong>99.7% of withdrawals</strong> are processed within 90 seconds, some larger amounts (over ৳200,000) may require additional verification for your protection. If your withdrawal is taking longer than 10 minutes, contact our 24/7 live support team via chat, WhatsApp, or Telegram for immediate assistance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-card cta-section">
+                <h2 class="section-title">🚀 Ready to Experience the Fastest Payments?</h2>
+                <p>Join over 100,000 players who trust Al99 Casino for lightning-fast payments, incredible games, and the best bonuses in Bangladesh!</p>
+                
+                <div class="stat-boxes">
+                    <div class="stat-box">
+                        <div class="stat-number">90<span>sec</span></div>
+                        <div class="stat-label">Average Withdrawal Time</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-number">99.7<span>%</span></div>
+                        <div class="stat-label">Successful Fast Payouts</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-number">0<span>৳</span></div>
+                        <div class="stat-label">Withdrawal Fees</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Payment Support</div>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="https://negolous.com/QS3yvq7m" class="btn btn-orange">CREATE ACCOUNT & DEPOSIT</a>
+                    <a href="https://negolous.com/QS3yvq7m" class="btn btn-green">CONTACT SUPPORT</a>
+                </div>
+            </div>
+        </div>
+				        <!-- Footer Section -->
+								<div class="footer">
+									<div class="footer-content">
+											<div class="footer-column">
+													<h3>About Al99</h3>
+													<ul class="footer-links">
+															<li><a href="#">About Us</a></li>
+															<li><a href="#">Responsible Gaming</a></li>
+															<li><a href="#">Terms & Conditions</a></li>
+															<li><a href="#">Privacy Policy</a></li>
+															<li><a href="#">FAQ</a></li>
+													</ul>
+											</div>
+											
+											<div class="footer-column">
+													<h3>Games</h3>
+													<ul class="footer-links">
+															<li><a href="#">Slots</a></li>
+															<li><a href="#">Live Casino</a></li>
+															<li><a href="#">Table Games</a></li>
+															<li><a href="#">Crash Games</a></li>
+															<li><a href="#">Sports Betting</a></li>
+													</ul>
+											</div>
+											
+											<div class="footer-column">
+													<h3>Support</h3>
+													<ul class="footer-links">
+															<li><a href="#">Help Center</a></li>
+															<li><a href="#">Contact Us</a></li>
+															<li><a href="#">Live Chat</a></li>
+															<li><a href="#">Complaints</a></li>
+															<li><a href="#">Security</a></li>
+													</ul>
+											</div>
+											
+											<div class="footer-column">
+													<h3>Payment Methods</h3>
+													<div class="payment-icons">
+															<i class="fab fa-cc-visa"></i>
+															<i class="fab fa-cc-mastercard"></i>
+															<i class="fab fa-bitcoin"></i>
+															<i class="fab fa-ethereum"></i>
+															<i class="fab fa-google-pay"></i>
+													</div>
+													<div class="social-icons">
+															<a href="#"><i class="fab fa-facebook"></i></a>
+															<a href="#"><i class="fab fa-twitter"></i></a>
+															<a href="#"><i class="fab fa-instagram"></i></a>
+															<a href="#"><i class="fab fa-telegram"></i></a>
+													</div>
+											</div>
+									</div>
+									
+									<div class="footer-bottom">
+											<p>&copy; 2023 Al99 Casino. All rights reserved. 18+ | Play Responsibly.</p>
+									</div>
+							</div>
+    </div>
+		<script>
+			// Duplicate ticker content for continuous scrolling
+			document.addEventListener('DOMContentLoaded', function() {
+					const tickerContent = document.querySelector('.ticker-content');
+					tickerContent.innerHTML = tickerContent.innerHTML + ' ' + tickerContent.innerHTML;
+			});
+	</script>
+</body>
+</html> 
